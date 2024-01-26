@@ -6,7 +6,10 @@ export function changePropertyNames(
 
   for (const key in obj) {
     if (translations.hasOwnProperty(key)) {
-      newObj[translations[key]] = obj[key];
+      const translation = translations[key];
+      if (translation !== '') {
+        newObj[translation] = obj[key];
+      }
     } else {
       newObj[key] = obj[key];
     }
