@@ -1,0 +1,30 @@
+
+service: SofttekApi
+frameworkVersion: "3"
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  memorySize: 2048
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+functions:
+  hello:
+    handler: handler.startApp
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
+    environment:
+      PORT: 3000
+      DATABASE_URL: ${env:DATABASE_URL}
+      SW_URL_API: ${env:SW_URL_API}
+
+
+

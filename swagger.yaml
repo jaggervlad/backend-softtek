@@ -1,0 +1,111 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Documentación de la API de Star Wars Characters
+  description: Documentación de los endpoints relacionados con los personajes de Star Wars.
+paths:
+  /api/characters:
+    get:
+      summary: Obtiene todos los personajes de Star Wars.
+      description: Retorna una lista de todos los personajes de Star Wars.
+      produces:
+        - application/json
+      tags: 
+        - Characters
+      responses:
+        200:
+          description: Éxito al obtener los personajes.
+          schema:
+            type: object
+            properties:
+              ok:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Character'
+              error:
+                type: null
+                example: null
+  /api/characters/{id}:
+    get:
+      summary: Obtiene un personaje de Star Wars por su ID.
+      description: Retorna un personaje de Star Wars específico basado en su ID.
+      produces:
+        - application/json
+      tags: 
+        - Characters
+      parameters:
+        - name: id
+          in: path
+          description: ID del personaje a obtener.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Éxito al obtener el personaje.
+          schema:
+            $ref: '#/definitions/Character'
+        404:
+          description: El personaje no fue encontrado.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Personaje no encontrado"
+        500:
+          description: Error interno del servidor.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Error interno del servidor"
+definitions:
+  Character:
+    type: object
+    properties:
+      nombre:
+        type: string
+      altura:
+        type: string
+      masa:
+        type: string
+      color_del_cabello:
+        type: string
+      color_de_piel:
+        type: string
+      color_de_ojos:
+        type: string
+      año_de_nacimiento:
+        type: string
+      género:
+        type: string
+      planeta_natal:
+        type: string
+      películas:
+        type: array
+        items:
+          type: string
+      especies:
+        type: array
+        items:
+          type: string
+      vehículos:
+        type: array
+        items:
+          type: string
+      naves_estelares:
+        type: array
+        items:
+          type: string
+      creado:
+        type: string
+        format: date-time
+      editado:
+        type: string
+        format: date-time
+      url:
+        type: string
