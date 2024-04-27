@@ -1,16 +1,16 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   version: 1.0.0
   title: Documentación de la API de Star Wars Characters
   description: Documentación de los endpoints relacionados con los personajes de Star Wars.
 paths:
-  /api/characters:
+  /dev/api/characters:
     get:
       summary: Obtiene todos los personajes de Star Wars.
       description: Retorna una lista de todos los personajes de Star Wars.
       produces:
         - application/json
-      tags: 
+      tags:
         - Characters
       responses:
         200:
@@ -24,17 +24,17 @@ paths:
               data:
                 type: array
                 items:
-                  $ref: '#/definitions/Character'
+                  $ref: "#/definitions/Character"
               error:
                 type: null
                 example: null
-  /api/characters/{id}:
+  /dev/api/characters/{id}:
     get:
       summary: Obtiene un personaje de Star Wars por su ID.
       description: Retorna un personaje de Star Wars específico basado en su ID.
       produces:
         - application/json
-      tags: 
+      tags:
         - Characters
       parameters:
         - name: id
@@ -46,7 +46,7 @@ paths:
         200:
           description: Éxito al obtener el personaje.
           schema:
-            $ref: '#/definitions/Character'
+            $ref: "#/definitions/Character"
         404:
           description: El personaje no fue encontrado.
           schema:
