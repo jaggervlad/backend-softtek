@@ -1,0 +1,50 @@
+service: SofttekApi
+frameworkVersion: "3"
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  memorySize: 2048
+  environment:
+    PORT: 4000
+    DATABASE_URL: ${env:DATABASE_URL}
+    SW_URL_API: ${env:SW_URL_API}
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+
+functions:
+  api:
+    handler: dist/serverless.startApp
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
+  getAllUsers:
+    handler: dist/serverless.startApp
+    events:
+      - http: "GET /api/users"
+  getUser:
+    handler: dist/serverless.startApp
+    events:
+      - http: "GET /api/users/{proxy+}"
+  createUser:
+    handler: dist/serverless.startApp
+    events:
+      - http: "POST /api/users"
+  getSWCharacters:
+    handler: dist/serverless.startApp
+    events:
+      - http: "GET /api/characters"
+  gettSWCharacter:
+    handler: dist/serverless.startApp
+    events:
+      - http: "GET /api/characters/{proxy+}"

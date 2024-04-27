@@ -1,0 +1,14 @@
+# package directories
+node_modules
+jspm_packages
+pnpm-lock.yaml
+
+# Serverless directories
+.serverless
+
+
+# Typescript Dist
+dist/
+
+
+.env
